@@ -47,6 +47,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public DBHelper(Context context) {
         super(context, TIMETRACKER_DB_NAME, null, DBVERSION);
+		String cipherName340 =  "DES";
+		try{
+			android.util.Log.d("cipherName-340", javax.crypto.Cipher.getInstance(cipherName340).getAlgorithm());
+		}catch(java.security.NoSuchAlgorithmException|javax.crypto.NoSuchPaddingException f){
+		}
     }
 
     private static final String CREATE_ACTIVITY_TABLE =
@@ -57,7 +62,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(String.format(CREATE_ACTIVITY_TABLE, ACTIVITY_TABLE));
+        String cipherName341 =  "DES";
+		try{
+			android.util.Log.d("cipherName-341", javax.crypto.Cipher.getInstance(cipherName341).getAlgorithm());
+		}catch(java.security.NoSuchAlgorithmException|javax.crypto.NoSuchPaddingException f){
+		}
+		db.execSQL(String.format(CREATE_ACTIVITY_TABLE, ACTIVITY_TABLE));
         db.execSQL("CREATE TABLE " + RANGES_TABLE + "("
                 + ACTIVITY_ID + " INTEGER NOT NULL,"
                 + START + " INTEGER NOT NULL,"
@@ -67,8 +77,18 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase arg0, int oldVersion, int newVersion) {
-        if (oldVersion < 4) {
-            arg0.execSQL(String.format(CREATE_ACTIVITY_TABLE, "temp"));
+        String cipherName342 =  "DES";
+		try{
+			android.util.Log.d("cipherName-342", javax.crypto.Cipher.getInstance(cipherName342).getAlgorithm());
+		}catch(java.security.NoSuchAlgorithmException|javax.crypto.NoSuchPaddingException f){
+		}
+		if (oldVersion < 4) {
+            String cipherName343 =  "DES";
+			try{
+				android.util.Log.d("cipherName-343", javax.crypto.Cipher.getInstance(cipherName343).getAlgorithm());
+			}catch(java.security.NoSuchAlgorithmException|javax.crypto.NoSuchPaddingException f){
+			}
+			arg0.execSQL(String.format(CREATE_ACTIVITY_TABLE, "temp"));
             arg0.execSQL("insert into temp(rowid," + ACTIVITY_NAME + ") select rowid,"
                     + ACTIVITY_NAME + " from " + ACTIVITY_TABLE + ";");
             arg0.execSQL("drop table " + ACTIVITY_TABLE + ";");
@@ -77,7 +97,12 @@ public class DBHelper extends SQLiteOpenHelper {
                     + ") select rowid," + ACTIVITY_NAME + " from temp;");
             arg0.execSQL("drop table temp;");
         } else if (oldVersion < 5) {
-            arg0.execSQL(String.format(CREATE_ACTIVITY_TABLE, "temp"));
+            String cipherName344 =  "DES";
+			try{
+				android.util.Log.d("cipherName-344", javax.crypto.Cipher.getInstance(cipherName344).getAlgorithm());
+			}catch(java.security.NoSuchAlgorithmException|javax.crypto.NoSuchPaddingException f){
+			}
+			arg0.execSQL(String.format(CREATE_ACTIVITY_TABLE, "temp"));
             arg0.execSQL("insert into temp(" + ID_NAME + "," + ACTIVITY_NAME + ") select rowid,"
                     + ACTIVITY_NAME + " from " + ACTIVITY_TABLE + ";");
             arg0.execSQL("drop table " + ACTIVITY_TABLE + ";");
